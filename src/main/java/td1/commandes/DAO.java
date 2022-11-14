@@ -57,6 +57,16 @@ public class DAO {
                 .collect(Collectors.toSet());
     }
 
+    /* Version sans stream
+        Set<Produit> sp = new HashSet<Produit>() ;
+        for(int i = 0 ; i < commandes.size() ; i++) {
+            commandes.get(i).lignes().forEach(cl -> {
+                sp.add(cl) ;
+            });
+        };
+        return sp ;
+     */
+
     /**
      * liste des commandes vérifiant un prédicat
      */
@@ -66,6 +76,16 @@ public class DAO {
             .collect(Collectors.toList());
     }
 
+    /* Version sans stream
+        List<Commande> lc = new ArrayList<Commande>();
+        commandes.forEach(c -> {
+            if(p.test(c)){
+                lc.add(c) ;
+            }
+        });
+        return lc ;
+     */
+
     /**
      * liste des commandes dont au moins une ligne vérifie un prédicat
      */
@@ -74,6 +94,16 @@ public class DAO {
             .filter(c -> c.lignes().stream().anyMatch(p))
             .collect(Collectors.toList());
     }
+
+    /* Version sans stream
+        List<Commande> lc = new ArrayList<Commande>();
+        commandes.forEach(c -> {
+            if(p.test(c)){
+                lc.add(c) ;
+            }
+        });
+        return lc ;
+     */
 
     /**
      * ensemble des différents produits commandés vérifiant un prédicat
